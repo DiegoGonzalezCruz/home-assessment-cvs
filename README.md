@@ -34,7 +34,7 @@ This project was created following these instructions: [https://github.com/harsh
 1. **Clone the repository:**
 
    ```
-   git clone https://github.com/your-username/movie-information-api.git
+   git clone https://github.com/DiegoGonzalezCruz/home-assessment-cvs.git
    cd movie-information-api
    ```
 

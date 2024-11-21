@@ -33,7 +33,8 @@ export async function getMoviesByYear(
       },
     });
 
-    // Parallel call improves performance
+    // Parallel call improves performance 🤩
+    // It could be optimized further by limiting the number of concurrent requests, like p-limit
     const movies = await Promise.all(
       res.data.results.map(async (movieResult: DiscoverMovieResult) => {
         const editors = await getMovieEditors(movieResult.id);
@@ -85,6 +86,6 @@ async function getMovieEditors(movieId: number): Promise<string[]> {
       .map((editor: CrewMember) => editor.name);
   } catch (error) {
     logger.error(`Error fetching editors for movie ID ${movieId}:`, error);
-    return []; // Return empty array on failure
+    return []; // Return empty array on failure so the movie can still be displayed
   }
 }
