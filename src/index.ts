@@ -16,17 +16,27 @@ app.use(bodyParser.json());
 
 app.get(
   "/movies/:year",
-  async (req: Request<{ year: string }>, res: Response): Promise<void> => {
+  async (
+    req: Request<{ year: string }, {}, {}, { page?: string }>,
+    res: Response
+  ): Promise<void> => {
     const year = req.params.year;
-    // console.log(year, "year");
+    const page = req.query.page || "1"; // Default to page 1 if not provided
 
     if (!/^\d{4}$/.test(year)) {
       res.status(400).json({ error: "Invalid year format. Please use YYYY" });
       return;
     }
+    // Validate the page parameter
+    if (!/^\d+$/.test(page) || parseInt(page, 10) < 1) {
+      res
+        .status(400)
+        .json({ error: "Invalid page number. Must be a positive integer." });
+      return;
+    }
 
     try {
-      const movies = await getMoviesByYear(year);
+      const movies = await getMoviesByYear(year, page);
       //   console.log(movies, "movies");
       res.json(movies);
     } catch (error) {
