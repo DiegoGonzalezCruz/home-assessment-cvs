@@ -13,7 +13,6 @@ This project was created following these instructions: [https://github.com/harsh
 - [Running Tests](#running-tests)
 - [Technologies Used](#technologies-used)
 - [Project Structure](#project-structure)
-- [Contributing](#contributing)
 - [License](#license)
 - [Contact Information](#contact-information)
 
@@ -87,8 +86,6 @@ Response Format
 The API returns a JSON array of movie objects with the following structure:
 
 ```
-json
-Copy code
 [
   {
     "title": "Movie Title",
@@ -191,12 +188,13 @@ The tests cover scenarios including successful data retrieval, API failures, mov
 └── README.md           // Project documentation
 ```
 
-License
+## License
+
 This project is licensed under the MIT License.
 
-Contact Information
+## Contact Information
+
 For any questions or suggestions, please contact:
 
 Name: Diego Gonzalez Cruz
-
 Email: diego@thinkey.us
