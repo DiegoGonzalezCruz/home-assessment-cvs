@@ -1,6 +1,6 @@
 # Movie Information API
 
-This project is a Node.js application that provides an API endpoint to retrieve a list of movies released in a specified year, sorted by descending popularity. Each movie in the list includes the title, release date, vote average, and a list of editors. The API integrates with The Movie Database (TMDB) APIs to fetch movie and credit information.
+This project was created following these instructions: [https://github.com/harshalpatel/take-home-coding?tab=readme-ov-file](https://) . It corresponds to a Node.js application that provides an API endpoint to retrieve a list of movies released in a specified year, sorted by descending popularity. Each movie in the list includes the title, release date, vote average, and a list of editors. The API integrates with The Movie Database (TMDB) APIs to fetch movie and credit information. Robust testing is included.
 
 ## Table of Contents
 
@@ -39,7 +39,7 @@ This project is a Node.js application that provides an API endpoint to retrieve 
    cd movie-information-api
    ```
 
-2. ** Install dependencies:**
+2. Install dependencies:
 
 ```
 npm install
@@ -55,7 +55,7 @@ Create a .env file in the root directory:
 touch .env
 ```
 
-## Add your TMDB API key to the .env file:
+### Add your TMDB API key to the .env file:
 
 ```
 TMDB_API_KEY=your_tmdb_bearer_token
@@ -76,7 +76,7 @@ The server will run on port 3000 by default.
 
 ## API Documentation
 
-Endpoint
+**Endpoint**
 URL: /movies/:year
 Method: GET
 URL Parameters:
@@ -198,4 +198,5 @@ Contact Information
 For any questions or suggestions, please contact:
 
 Name: Diego Gonzalez Cruz
+
 Email: diego@thinkey.us
