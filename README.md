@@ -46,6 +46,7 @@ npm install
 ```
 
 ## Environment Variables
+
 The application requires a TMDB API bearer token to authenticate requests. Do not commit your bearer token to the repository.
 
 Create a .env file in the root directory:
@@ -59,18 +60,22 @@ touch .env
 ```
 TMDB_API_KEY=your_tmdb_bearer_token
 ```
+
 - Replace your_tmdb_bearer_token with your actual TMDB bearer token.
 - You can obtain an API key by creating an account on The Movie Database.
 
 ## Running the Application
+
 Start the server:
 
 ```
 npm start
 ```
+
 The server will run on port 3000 by default.
 
 ## API Documentation
+
 Endpoint
 URL: /movies/:year
 Method: GET
@@ -98,6 +103,7 @@ Copy code
 
 GET http://localhost:3000/movies/2019?page=1
 Example Response:
+
 ```
 json
 Copy code
@@ -123,49 +129,58 @@ Copy code
 ]
 ```
 
-Error Handling
+## Error Handling
+
 Invalid Year Format:
 
-json
-Copy code
+```
 {
   "error": "Invalid year format. Please use YYYY"
 }
-Invalid Page Number:
+```
 
-json
-Copy code
+### Invalid Page Number:
+
+```
 {
   "error": "Invalid page number. Must be a positive integer."
 }
-Internal Server Error:
+```
 
-json
-Copy code
+### Internal Server Error:
+
+```
 {
   "error": "Internal Server Error"
 }
-Running Tests
+```
+
+## Running Tests
+
 The project includes unit tests to ensure functionality remains intact.
 
 Run tests using the following command:
 
-bash
-Copy code
+```
 npm test
-Test Coverage:
+```
+
+### Test Coverage:
 
 The tests cover scenarios including successful data retrieval, API failures, movies without editors, and partial failures.
-Technologies Used
+
+## Technologies Used
+
 Node.js: JavaScript runtime environment.
 TypeScript: Typed superset of JavaScript.
 Express: Web framework for Node.js.
 Axios: Promise-based HTTP client.
 dotenv: Loads environment variables from a .env file.
 Jest: JavaScript testing framework.
-Project Structure
-go
-Copy code
+
+## Project Structure
+
+```
 ├── src
 │   ├── index.ts        // Entry point of the application
 │   ├── movies.ts       // Module handling movie data fetching and processing
@@ -174,27 +189,7 @@ Copy code
 ├── package.json        // Project metadata and dependencies
 ├── tsconfig.json       // TypeScript configuration
 └── README.md           // Project documentation
-Contributing
-Contributions are welcome! Please follow these steps:
-
-Fork the repository.
-
-Create a new branch:
-
-bash
-Copy code
-git checkout -b feature/your-feature-name
-Make your changes and commit them:
-
-bash
-Copy code
-git commit -m 'Add some feature'
-Push to the branch:
-
-bash
-Copy code
-git push origin feature/your-feature-name
-Submit a pull request.
+```
 
 License
 This project is licensed under the MIT License.
