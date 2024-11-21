@@ -1,6 +1,6 @@
 # Movie Information API
 
-This project was created following these instructions: [https://github.com/harshalpatel/take-home-coding?tab=readme-ov-file](https://) . It corresponds to a Node.js application that provides an API endpoint to retrieve a list of movies released in a specified year, sorted by descending popularity. Each movie in the list includes the title, release date, vote average, and a list of editors. The API integrates with The Movie Database (TMDB) APIs to fetch movie and credit information. Robust testing is included.
+This project was created following these instructions: [https://github.com/harshalpatel/take-home-coding](https://github.com/harshalpatel/take-home-coding) . It corresponds to a Node.js application that provides an API endpoint to retrieve a list of movies released in a specified year, sorted by descending popularity. Each movie in the list includes the title, release date, vote average, and a list of editors. The API integrates with The Movie Database (TMDB) APIs to fetch movie and credit information. Robust testing is included.
 
 ## Table of Contents
 
