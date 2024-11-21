@@ -21,12 +21,15 @@ export async function getMoviesByYear(
   const discoverMovieURL = `${TMDB_BASE_URL}/discover/movie`;
   try {
     const res = await axios.get(discoverMovieURL, {
+      headers: {
+        accept: "application/json",
+        Authorization: `Bearer ${TMDB_API_KEY}`,
+      },
       params: {
         language: "en-US",
         primary_release_year: year,
         sort_by: "popularity.desc",
         page: page,
-        api_key: TMDB_API_KEY,
       },
     });
 
@@ -66,8 +69,9 @@ async function getMovieEditors(movieId: number): Promise<string[]> {
 
   try {
     const res = await axios.get(movieCreditURL, {
-      params: {
-        api_key: TMDB_API_KEY,
+      headers: {
+        accept: "application/json",
+        Authorization: `Bearer ${TMDB_API_KEY}`,
       },
     });
     return res.data.crew

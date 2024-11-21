@@ -2,7 +2,7 @@ import dotenv from "dotenv";
 dotenv.config();
 
 import express, { Request, Response } from "express";
-import bodyParser from "body-parser";
+
 import { getMoviesByYear } from "./movies";
 
 // Load env variables
@@ -12,7 +12,6 @@ const app = express();
 const port = 3000;
 
 // Middleware to parse JSON
-app.use(bodyParser.json());
 
 app.get(
   "/movies/:year",
