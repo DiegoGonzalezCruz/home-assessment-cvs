@@ -105,8 +105,6 @@ GET http://localhost:3000/movies/2019?page=1
 Example Response:
 
 ```
-json
-Copy code
 [
   {
     "title": "Joker",
@@ -171,12 +169,14 @@ The tests cover scenarios including successful data retrieval, API failures, mov
 
 ## Technologies Used
 
-Node.js: JavaScript runtime environment.
-TypeScript: Typed superset of JavaScript.
-Express: Web framework for Node.js.
-Axios: Promise-based HTTP client.
-dotenv: Loads environment variables from a .env file.
-Jest: JavaScript testing framework.
+- Node.js: JavaScript runtime environment.
+- TypeScript: Typed superset of JavaScript.
+
+- Express: Web framework for Node.js.
+- Axios: Promise-based HTTP client.
+
+- dotenv: Loads environment variables from a .env file.
+- Jest: JavaScript testing framework.
 
 ## Project Structure
 
