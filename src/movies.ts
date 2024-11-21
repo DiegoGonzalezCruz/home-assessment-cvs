@@ -1,17 +1,17 @@
 import axios from "axios";
+import { logger, TMDB_API_KEY } from "./config";
+import {
+  CrewMember,
+  DiscoverMovieResponse,
+  DiscoverMovieResult,
+  Movie,
+  MovieCreditsResponse,
+} from "./types";
 
-const TMDB_API_KEY = process.env.TMDB_API_KEY;
 const TMDB_BASE_URL = "https://api.themoviedb.org/3";
 
 if (!TMDB_API_KEY) {
   throw new Error("TMDB_API_KEY is not set in .env file");
-}
-
-interface Movie {
-  title: string;
-  release_date: string;
-  vote_average: number;
-  editors?: string[]; // optional
 }
 
 export async function getMoviesByYear(
@@ -20,7 +20,7 @@ export async function getMoviesByYear(
 ): Promise<Movie[]> {
   const discoverMovieURL = `${TMDB_BASE_URL}/discover/movie`;
   try {
-    const res = await axios.get(discoverMovieURL, {
+    const res = await axios.get<DiscoverMovieResponse>(discoverMovieURL, {
       headers: {
         accept: "application/json",
         Authorization: `Bearer ${TMDB_API_KEY}`,
@@ -35,12 +35,12 @@ export async function getMoviesByYear(
 
     // Parallel call improves performance
     const movies = await Promise.all(
-      res.data.results.map(async (movie: any) => {
-        const editors = await getMovieEditors(movie.id);
+      res.data.results.map(async (movieResult: DiscoverMovieResult) => {
+        const editors = await getMovieEditors(movieResult.id);
         return {
-          title: movie.title,
-          release_date: formatReleaseDate(movie.release_date),
-          vote_average: parseFloat(movie.vote_average.toFixed(2)),
+          title: movieResult.title,
+          release_date: formatReleaseDate(movieResult.release_date),
+          vote_average: parseFloat(movieResult.vote_average.toFixed(2)),
           editors,
         };
       })
@@ -48,7 +48,7 @@ export async function getMoviesByYear(
 
     return movies;
   } catch (error) {
-    console.error("Error fetching movies:", error);
+    logger.error("Error fetching movies:", error);
     throw new Error("Failed to fetch movies");
   }
 }
@@ -68,19 +68,23 @@ async function getMovieEditors(movieId: number): Promise<string[]> {
   const movieCreditURL = `${TMDB_BASE_URL}/movie/${movieId}/credits`;
 
   try {
-    const res = await axios.get(movieCreditURL, {
+    const res = await axios.get<MovieCreditsResponse>(movieCreditURL, {
       headers: {
         accept: "application/json",
         Authorization: `Bearer ${TMDB_API_KEY}`,
       },
     });
-    return res.data.crew
+
+    const crew = res.data.crew || []; // Ensure crew is an array
+
+    return crew
       .filter(
-        (crewMember: any) => crewMember.known_for_department === "Editing"
-      ) // Filter crew members by department "Editing" only
-      .map((editor: any) => editor.name);
+        (crewMember: CrewMember) =>
+          crewMember.known_for_department === "Editing"
+      )
+      .map((editor: CrewMember) => editor.name);
   } catch (error) {
-    console.error(`Error fetching editors for movie ID ${movieId}:`, error);
+    logger.error(`Error fetching editors for movie ID ${movieId}:`, error);
     return []; // Return empty array on failure
   }
 }

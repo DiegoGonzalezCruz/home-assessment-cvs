@@ -1,9 +1,7 @@
-import dotenv from "dotenv";
-dotenv.config();
-
 import express, { Request, Response } from "express";
 
 import { getMoviesByYear } from "./movies";
+import { logger } from "./config";
 
 // Load env variables
 
@@ -36,15 +34,14 @@ app.get(
 
     try {
       const movies = await getMoviesByYear(year, page);
-      //   console.log(movies, "movies");
       res.json(movies);
     } catch (error) {
-      console.error(error);
+      logger.error("Error fetching movies:", error);
       res.status(500).json({ error: "Internal Server Error" });
     }
   }
 );
 
 app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
+  logger.info(`Server is running on port ${port}`);
 });
